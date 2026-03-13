@@ -433,9 +433,14 @@ function setDots(step) {
 
 function reset() {
   org = null; ans = {};
+  // Clear org selection
   document.getElementById('ob-sponsor').classList.remove('sel');
   document.getElementById('ob-agency').classList.remove('sel');
   document.getElementById('btn-go').classList.remove('on');
+  // Wipe question body so old selections don't linger
+  document.getElementById('q-body').innerHTML = '';
+  document.getElementById('q-eyebrow').textContent = '';
+  document.getElementById('btn-calc').classList.remove('on');
   showScreen('s-intro');
   document.getElementById('d0').className = 'dot active';
   document.getElementById('d1').className = 'dot';
@@ -444,7 +449,7 @@ function reset() {
 
 // ── BACKEND CONFIG
 // Paste your Google Apps Script Web App URL here after setup:
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyu_Vo8ma6B1cyl8evqwn2HK74ti4doqmo_TC5s5OyVV5W0gTa8lWEV7wUiRJ59I6qaLw/exec';  // e.g. 'https://script.google.com/macros/s/XXXX/exec'
+const SHEET_URL = '';  // e.g. 'https://script.google.com/macros/s/XXXX/exec'
 
 // ── STORAGE + SYNC
 function saveSubmission(r) {
