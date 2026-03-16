@@ -52,14 +52,14 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
 .btn-primary { width: 100%; padding: 16px; background: var(--gold); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; border: none; border-radius: 14px; cursor: pointer; margin-top: 14px; opacity: .4; pointer-events: none; transition: all .18s; }
 .btn-primary.on { opacity: 1; pointer-events: all; }
 .btn-back { display: flex; align-items: center; gap: 6px; background: none; border: 1.5px solid var(--border); border-radius: 10px; padding: 8px 14px; font-size: 12px; font-weight: 500; color: var(--muted); cursor: pointer; margin-bottom: 16px; width: fit-content; }
-.persona-header { background: var(--ink); border-radius: 18px; padding: 20px 18px; margin-bottom: 12px; position: relative; overflow: hidden; }
+.persona-header { background: var(--ink); border-radius: 18px; padding: 24px 18px 28px; margin-bottom: 12px; position: relative; overflow: visible; min-height: 150px; }
 .persona-header::after { content: ''; position: absolute; top: -40px; right: -40px; width: 130px; height: 130px; background: var(--gold); opacity: .07; border-radius: 50%; }
 .persona-tag { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,195,34,.7); margin-bottom: 8px; }
-.persona-name { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--gold); line-height: 1; margin-bottom: 10px; word-break: break-word; }
+.persona-name { font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--gold); line-height: 1.1; margin-bottom: 10px; word-break: break-word; display: block; min-height: 50px; }
 .persona-desc { font-size: 12.5px; color: rgba(255,255,255,.8); line-height: 1.6; }
 .score-badge { background: var(--gold); border-radius: 12px; padding: 10px 14px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
-.score-lbl { font-size: 11px; font-weight: 600; color: var(--ink); }
-.score-val { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--ink); line-height: 1; }
+.score-lbl { font-size: 14px; font-weight: 600; color: var(--ink); }
+.score-val { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--ink); line-height: 1; }
 .tension-card { background: var(--card); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; border-left: 4px solid var(--gold); }
 .tension-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
 .tension-text { font-size: 13px; color: var(--ink); line-height: 1.55; }
@@ -177,7 +177,6 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
       </div>
       <div class="email-card">
         <div class="email-label">&#128233; Email Your Result</div>
-        <div class="email-sub">Enter your email to receive a copy</div>
         <div class="email-row">
           <input class="email-input" id="email-input" type="email" placeholder="you@organisation.com">
           <button class="email-btn" id="btn-email">Send</button>
@@ -185,9 +184,9 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
         <div class="email-sent" id="email-sent">&#10003; Saved! We'll be in touch.</div>
       </div>
       <a class="btn-cta" href="https://calendly.com/exploratory-call-jiffytheapp/30mins?utm_source=WETM%20conference&utm_medium=Conference&utm_campaign=WETM%20Booth%20QR&month=2026-03" target="_blank">See How J1FFY Does It &#8594;</a>
-      <p class="screenshot">&#128248; Screenshot this result to keep it</p>
+      
       <button class="btn-reset" id="btn-reset">Start Over</button>
-      <p class="disclaimer">Results are based on your selections and intended as a guide only.</p>
+      <p class="disclaimer">These estimates are based on typical workflow patterns and are intended as a guide, not industry-standard benchmarks.</p>
     </div>
 
   </div>
@@ -227,7 +226,7 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
       helps: ['Centralized participant tracking', 'Centralized document collection', 'Reduced manual coordination']
     },
     'Operational Juggler': {
-      desc: 'Your organisation uses several tools, but they don\'t fully connect.',
+      desc: "Your organisation uses several tools, but they don't fully connect.",
       tension: 'Fragmented systems create duplicated work and slow visibility.',
       helps: ['Unified operational workflow', 'Reduced tool switching – all within one platform', 'Real-time operational visibility']
     },
@@ -319,7 +318,7 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
         opts: ['Spreadsheet', 'Shared folders and drives', 'Generic CRM', 'Internal platform'] },
       { id: 'scale', label: 'Q2 OF 4', text: 'During peak season, how many participants do you manage?', hint: 'Select one', type: 'single', cols: 2,
         opts: ['Under 100', '100 – 500', '500 – 2,000', '2,000+'] },
-      { id: 'pain', label: 'Q3 OF 4', text: 'What are your biggest operational challenges?', hint: 'Pick your top 2 (not scored)', type: 'multi2', cols: 1,
+      { id: 'pain', label: 'Q3 OF 4', text: 'What are your biggest operational challenges?', hint: 'Pick your top 2', type: 'multi2', cols: 1,
         opts: painOpts, notScored: true },
       { id: 'automation', label: 'Q4 OF 4', text: 'How automated are your operations today?', hint: 'Select one', type: 'single', cols: 1,
         opts: ['Mostly manual', 'Some automation', 'Mostly automated', 'Highly automated'] }
@@ -333,7 +332,7 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
       sect.className = 'q-sect';
 
       var inner = '<div class="q-label">' + q.label + '</div>';
-      if (q.notScored) inner += '<div class="not-scored">&#128202; For insights only — not scored</div>';
+
       inner += '<div class="q-text">' + q.text + '</div>';
       inner += '<div class="q-hint">' + q.hint + '</div>';
       inner += '<div class="' + (q.cols === 2 ? 'opts-2col' : 'opts-1col') + '" id="opts-' + q.id + '"></div>';
@@ -400,19 +399,23 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
   function calcResult() {
     var scores = calcScore();
     var persona = getPersona(scores.total);
-    var p = PERSONAS[persona];
+
+    // Fallback map in case PERSONAS lookup fails
+    var fallback = {
+      desc: '', tension: '', helps: []
+    };
+    var p = PERSONAS[persona] || fallback;
     currentPersona = persona;
 
-    saveSubmission(scores, persona);
-
+    // Set r-name FIRST before anything else
     document.getElementById('r-name').textContent = persona;
-    document.getElementById('r-desc').textContent = p.desc;
     document.getElementById('r-score').textContent = scores.total + ' / 12';
-    document.getElementById('r-tension').textContent = p.tension;
+    document.getElementById('r-desc').textContent = p.desc || '';
+    document.getElementById('r-tension').textContent = p.tension || '';
 
     var helpsEl = document.getElementById('r-helps');
     helpsEl.innerHTML = '';
-    p.helps.forEach(function(h) {
+    (p.helps || []).forEach(function(h) {
       var item = document.createElement('div');
       item.className = 'help-item';
       item.innerHTML = '<div class="help-dot"></div><div class="help-txt">' + h + '</div>';
@@ -421,6 +424,9 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
 
     document.getElementById('email-sent').style.display = 'none';
     document.getElementById('email-input').value = '';
+
+    saveSubmission(scores, persona);
+
     showScreen('s-result', 'forward');
     setDots(2);
   }
@@ -575,6 +581,7 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
   function clearAll() {
     if (confirm('Clear all submissions?')) { localStorage.removeItem('j1ffy_subs'); openAdmin(); }
   }
+
 
 })();
 </script>
