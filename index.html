@@ -18,8 +18,8 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
 .dot.active { background: var(--gold); width: 20px; border-radius: 3px; }
 .dot.done { background: rgba(255,195,34,0.45); }
 .screens { flex: 1; overflow: hidden; position: relative; }
-.screen { position: absolute; inset: 0; overflow-y: auto; opacity: 0; transform: translateX(30px); pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; padding: 20px 18px 28px; display: flex; flex-direction: column; }
-.screen.active { opacity: 1; transform: translateX(0); pointer-events: all; }
+.screen { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; opacity: 0; transform: translateX(30px); pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; padding: 20px 18px 28px; display: flex; flex-direction: column; visibility: hidden; z-index: 0; }
+.screen.active { visibility: visible; z-index: 1; opacity: 1; transform: translateX(0); pointer-events: all; }
 .screen.exit { opacity: 0; transform: translateX(-30px); }
 .screen.back-exit { opacity: 0; transform: translateX(30px); }
 .screen::-webkit-scrollbar { width: 3px; }
@@ -68,14 +68,14 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
 .help-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
 .help-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
 .help-txt { font-size: 12.5px; color: var(--ink); line-height: 1.45; }
-.email-card { background: var(--card); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; }
-.email-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); margin-bottom: 4px; }
-.email-sub { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
-.email-row { display: flex; gap: 8px; }
-.email-input { flex: 1; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ink); background: var(--paper); outline: none; min-width: 0; }
-.email-input:focus { border-color: var(--gold); }
-.email-btn { padding: 10px 14px; background: var(--ink); color: var(--gold); border: none; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
-.email-sent { font-size: 12px; color: #2d7a2d; font-weight: 500; margin-top: 6px; display: none; }
+
+
+
+
+
+
+
+
 .btn-cta { display: block; width: 100%; padding: 16px; background: var(--gold); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; border: none; border-radius: 14px; cursor: pointer; text-align: center; text-decoration: none; margin-bottom: 10px; }
 .btn-reset { width: 100%; padding: 12px; background: none; border: 1.5px solid var(--border); border-radius: 12px; font-size: 13px; color: var(--muted); cursor: pointer; margin-bottom: 6px; }
 .disclaimer { font-size: 10.5px; color: var(--muted); line-height: 1.5; text-align: center; margin-top: 4px; margin-bottom: 16px; }
@@ -175,14 +175,7 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
         <div class="helps-label">How J1FFY Helps</div>
         <div id="r-helps"></div>
       </div>
-      <div class="email-card">
-        <div class="email-label">&#128233; Email Your Result</div>
-        <div class="email-row">
-          <input class="email-input" id="email-input" type="email" placeholder="you@organisation.com">
-          <button class="email-btn" id="btn-email">Send</button>
-        </div>
-        <div class="email-sent" id="email-sent">&#10003; Saved! We'll be in touch.</div>
-      </div>
+      <p class="screenshot">📸 Screenshot this result to keep it</p>
       <a class="btn-cta" href="https://calendly.com/exploratory-call-jiffytheapp/30mins?utm_source=WETM%20conference&utm_medium=Conference&utm_campaign=WETM%20Booth%20QR&month=2026-03" target="_blank">See How J1FFY Does It &#8594;</a>
       
       <button class="btn-reset" id="btn-reset">Start Over</button>
@@ -267,7 +260,6 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
   document.getElementById('btn-back-r').addEventListener('click', function() { showScreen('s-questions', 'back'); setDots(1); });
   document.getElementById('btn-calc').addEventListener('click', function() { calcResult(); });
   document.getElementById('btn-reset').addEventListener('click', function() { resetGame(); });
-  document.getElementById('btn-email').addEventListener('click', function() { sendEmail(); });
   document.getElementById('btn-export').addEventListener('click', function() { exportJSON(); });
   document.getElementById('btn-clear').addEventListener('click', function() { clearAll(); });
   document.getElementById('btn-close-admin').addEventListener('click', function() { closeAdmin(); });
@@ -422,8 +414,6 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
       helpsEl.appendChild(item);
     });
 
-    document.getElementById('email-sent').style.display = 'none';
-    document.getElementById('email-input').value = '';
 
     saveSubmission(scores, persona);
 
@@ -431,19 +421,6 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
     setDots(2);
   }
 
-  function sendEmail() {
-    var email = document.getElementById('email-input').value.trim();
-    if (!email || email.indexOf('@') === -1) { document.getElementById('email-input').focus(); return; }
-    try {
-      var all = JSON.parse(localStorage.getItem('j1ffy_subs') || '[]');
-      if (all.length) { all[all.length - 1].email = email; localStorage.setItem('j1ffy_subs', JSON.stringify(all)); }
-    } catch(e) {}
-    if (SHEET_URL) {
-      fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ type: 'email_update', email: email, ts: new Date().toISOString() }) }).catch(function(){});
-    }
-    document.getElementById('email-sent').style.display = 'block';
-  }
 
   function showScreen(id, direction) {
     document.querySelectorAll('.screen').forEach(function(s) {
@@ -502,8 +479,7 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
       score: scores.total,
       tool_score: scores.toolScore,
       scale_score: scores.scaleScore,
-      auto_score: scores.autoScore,
-      email: ''
+      auto_score: scores.autoScore
     };
     try {
       var all = JSON.parse(localStorage.getItem('j1ffy_subs') || '[]');
@@ -527,8 +503,7 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
       score: entry.score,
       tool_score: entry.tool_score,
       scale_score: entry.scale_score,
-      auto_score: entry.auto_score,
-      email: entry.email || ''
+      auto_score: entry.auto_score
     };
     fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(row) }).catch(function(){});
   }
@@ -558,8 +533,7 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
           '<div><b>Scale:</b> ' + (s.scale || '–') + '</div>' +
           '<div><b>Pain:</b> ' + (s.pain && s.pain.length ? s.pain.join(', ') : '–') + '</div>' +
           '<div><b>Automation:</b> ' + (s.automation || '–') + '</div>' +
-          (s.email ? '<div><b>Email:</b> ' + s.email + '</div>' : '') +
-          '</div>';
+            '</div>';
       }).join('');
     }
     document.getElementById('admin').classList.add('show');
