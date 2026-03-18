@@ -40,34 +40,34 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
 .prog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 0; }
 .prog-chip { background: var(--paper); border: 1.5px solid var(--border); border-radius: 10px; padding: 9px 10px; cursor: pointer; font-size: 12px; font-weight: 500; color: var(--ink); text-align: center; transition: all .15s; }
 .prog-chip.sel { border-color: var(--gold); background: #fff9ea; font-weight: 600; }
-.q-sect { background: var(--card); border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+.q-sect { background: var(--card); border-radius: 16px; padding: 16px; margin-bottom: 12px; width: 100%; box-sizing: border-box; }
 .q-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
 .q-text { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--ink); line-height: 1.05; margin-bottom: 4px; }
 .q-hint { font-size: 11px; color: var(--muted); margin-bottom: 12px; }
 .not-scored { display: inline-flex; align-items: center; gap: 4px; background: #f0f0f0; color: #888; font-size: 10px; padding: 3px 8px; border-radius: 100px; margin-bottom: 8px; }
 .opts-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
 .opts-1col { display: flex; flex-direction: column; gap: 7px; }
-.opt { background: var(--paper); border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 500; color: var(--ink); text-align: left; line-height: 1.3; transition: all .15s; width: 100%; }
+.opt { background: var(--paper); border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: clamp(11px, 3.5vw, 12.5px); font-weight: 500; color: var(--ink); text-align: left; line-height: 1.3; transition: all .15s; width: 100%; box-sizing: border-box; word-break: break-word; }
 .opt.sel { border-color: var(--gold); background: #fff9ea; font-weight: 600; }
 .btn-primary { width: 100%; padding: 16px; background: var(--gold); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; border: none; border-radius: 14px; cursor: pointer; margin-top: 14px; opacity: .4; pointer-events: none; transition: all .18s; }
 .btn-primary.on { opacity: 1; pointer-events: all; }
 .btn-back { display: flex; align-items: center; gap: 6px; background: none; border: 1.5px solid var(--border); border-radius: 10px; padding: 8px 14px; font-size: 12px; font-weight: 500; color: var(--muted); cursor: pointer; margin-bottom: 16px; width: fit-content; }
-.persona-header { background: var(--ink); border-radius: 18px; padding: 24px 18px 28px; margin-bottom: 12px; position: relative; overflow: visible; min-height: 150px; }
-.persona-header::after { content: ''; position: absolute; top: -40px; right: -40px; width: 130px; height: 130px; background: var(--gold); opacity: .07; border-radius: 50%; }
+.persona-header { background: var(--ink); border-radius: 18px; padding: 20px 16px 22px; margin-bottom: 12px; position: relative; overflow: visible; width: 100%; box-sizing: border-box; }
+.persona-header::after { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: var(--gold); opacity: .07; border-radius: 50%; pointer-events: none; clip-path: inset(0 0 0 0 round 18px); }
 .persona-tag { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,195,34,.7); margin-bottom: 8px; }
-.persona-name { font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--gold); line-height: 1.1; margin-bottom: 10px; word-break: break-word; display: block; min-height: 50px; }
-.persona-desc { font-size: 12.5px; color: rgba(255,255,255,.8); line-height: 1.6; }
-.score-badge { background: var(--gold); border-radius: 12px; padding: 10px 14px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
-.score-lbl { font-size: 14px; font-weight: 600; color: var(--ink); }
-.score-val { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--ink); line-height: 1; }
-.tension-card { background: var(--card); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; border-left: 4px solid var(--gold); }
+.persona-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 7vw, 42px); color: var(--gold); line-height: 1.1; margin-bottom: 10px; word-break: break-word; display: block; }
+.persona-desc { font-size: clamp(11px, 3vw, 13px); color: rgba(255,255,255,.8); line-height: 1.6; word-break: break-word; overflow-wrap: break-word; display: block; width: 100%; }
+.score-badge { background: var(--gold); border-radius: 12px; padding: 10px 14px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; width: 100%; box-sizing: border-box; }
+.score-lbl { font-size: clamp(12px, 3.5vw, 15px); font-weight: 600; color: var(--ink); }
+.score-val { font-family: 'Bebas Neue', sans-serif; font-size: clamp(30px, 8vw, 38px); color: var(--ink); line-height: 1; }
+.tension-card { background: var(--card); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; border-left: 4px solid var(--gold); width: 100%; box-sizing: border-box; word-break: break-word; }
 .tension-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-.tension-text { font-size: 13px; color: var(--ink); line-height: 1.55; }
-.helps-card { background: var(--card); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; }
+.tension-text { font-size: clamp(11px, 3.2vw, 13px); color: var(--ink); line-height: 1.55; word-break: break-word; }
+.helps-card { background: var(--card); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; width: 100%; box-sizing: border-box; }
 .helps-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
 .help-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
 .help-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
-.help-txt { font-size: 12.5px; color: var(--ink); line-height: 1.45; }
+.help-txt { font-size: clamp(11px, 3.2vw, 13px); color: var(--ink); line-height: 1.45; word-break: break-word; }
 
 
 
@@ -95,6 +95,78 @@ body { font-family: 'DM Sans', sans-serif; display: flex; align-items: center; j
 .no-subs { color: #888; font-size: 13px; text-align: center; padding: 20px 0; }
 .adm-sync { font-size: 11px; margin-bottom: 10px; padding: 7px 10px; border-radius: 8px; }
 .adm-trig { position: fixed; bottom: 0; right: 0; width: 50px; height: 50px; z-index: 99; }
+
+/* ── RESPONSIVE FIXES */
+* { box-sizing: border-box; }
+.app { width: 100%; max-width: 430px; min-width: 320px; }
+.screen { width: 100%; }
+.q-sect { width: 100%; }
+.opts-1col .opt, .opts-2col .opt { width: 100%; word-break: break-word; white-space: normal; }
+.score-badge { width: 100%; }
+.tension-card { width: 100%; }
+.helps-card { width: 100%; }
+.btn-cta, .btn-reset, .btn-primary { width: 100%; }
+.org-grid { width: 100%; }
+.prog-grid { width: 100%; }
+.score-badge { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.score-val { font-size: clamp(28px, 8vw, 38px); flex-shrink: 0; }
+.score-lbl { font-size: clamp(12px, 3.5vw, 14px); }
+.intro-title, .screen-title { font-size: clamp(30px, 9vw, 38px); }
+@media (max-height: 700px) {
+  .screen { padding: 14px 16px 20px; }
+  .q-sect { padding: 12px; margin-bottom: 8px; }
+  }
+@media (max-width: 360px) {
+  .org-grid { grid-template-columns: 1fr; }
+  .opts-2col { grid-template-columns: 1fr; }
+  .prog-grid { grid-template-columns: 1fr; }
+}
+
+/* Small phones (iPhone SE etc) */
+@media (max-width: 375px) {
+  .hdr-logo { height: 28px; }
+  .screen { padding: 14px 14px 20px; }
+  .q-sect { padding: 12px; }
+    .btn-primary { padding: 14px; font-size: 14px; }
+  .btn-cta { padding: 14px; font-size: 14px; }
+  .org-btn { padding: 12px 8px; }
+  .org-btn .ico { font-size: 22px; }
+}
+/* Larger phones */
+@media (min-width: 430px) {
+  .app { max-width: 480px; }
+}
+
+/* ── RESPONSIVE ── */
+* { box-sizing: border-box; }
+.app { max-width: 430px; width: 100%; }
+
+/* Small phones (≤360px) */
+@media (max-width: 360px) {
+  .screen-title { font-size: 28px; }
+  .persona-name { font-size: 26px !important; }
+  .score-val { font-size: 30px; }
+  .opt { font-size: 11.5px; padding: 9px 10px; }
+  .q-text { font-size: 18px; }
+  .btn-primary, .btn-cta { font-size: 14px; padding: 14px; }
+}
+
+/* Medium phones (361–390px) */
+@media (min-width: 361px) and (max-width: 390px) {
+  .persona-name { font-size: 34px !important; }
+}
+
+/* Ensure nothing overflows horizontally */
+.screen, .q-sect, .persona-header, .tension-card, .helps-card, .score-badge {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.opts-1col .opt, .opts-2col .opt {
+  width: 100%;
+  white-space: normal;
+}
 </style>
 </head>
 <body>
